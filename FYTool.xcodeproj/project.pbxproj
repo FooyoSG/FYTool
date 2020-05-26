@@ -273,7 +273,7 @@
 				DEVELOPMENT_TEAM = K2ERF9J63R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FYTool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +294,7 @@
 				DEVELOPMENT_TEAM = K2ERF9J63R;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FYTool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
