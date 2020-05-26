@@ -23,6 +23,21 @@ pod install --repo-update
 - [UITextField](https://github.com/FooyoSG/FYTool/blob/master/Source/Extensions.swift)
 - [UITableView](https://github.com/FooyoSG/FYTool/blob/master/Source/Extensions.swift)
 - [UICollectionView](https://github.com/FooyoSG/FYTool/blob/master/Source/Extensions.swift)
+- [UserDefaults](https://github.com/FooyoSG/FYTool/blob/master/Source/Extensions.swift) `example:`
+```swift
+    extension UserDefaults {
+        struct category: UserDefaultsSettable {
+            enum defaultKeys: String {
+                case oneKey
+                ...
+            }
+        }
+    }
+    // Using
+    UserDefaults.category.set(value: "Text", forKey: .oneKey) // save
+    UserDefaults.category.removeObject(forKey: .oneKey) // delete
+    let text = UserDefaults.category.string(forKey: .oneKey) // read
+```
 
 ## Custom View
 
