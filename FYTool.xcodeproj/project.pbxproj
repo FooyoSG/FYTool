@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90E4613247CB75F00AA5C3D /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E4611247CB75F00AA5C3D /* InsetLabel.swift */; };
+		E90E4614247CB75F00AA5C3D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E4612247CB75F00AA5C3D /* Extensions.swift */; };
 		E941CCB7247B651100FFF203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941CCB6247B651100FFF203 /* AppDelegate.swift */; };
 		E941CCBD247B651200FFF203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E941CCBC247B651200FFF203 /* Assets.xcassets */; };
 		E941CCC3247B651200FFF203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E941CCC1247B651200FFF203 /* LaunchScreen.storyboard */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E90E4611247CB75F00AA5C3D /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		E90E4612247CB75F00AA5C3D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E941CCB3247B651100FFF203 /* FYTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E941CCB6247B651100FFF203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E941CCBC247B651200FFF203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -33,9 +37,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E90E4610247CB75F00AA5C3D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E90E4611247CB75F00AA5C3D /* InsetLabel.swift */,
+				E90E4612247CB75F00AA5C3D /* Extensions.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		E941CCAA247B651100FFF203 = {
 			isa = PBXGroup;
 			children = (
+				E90E4610247CB75F00AA5C3D /* Source */,
 				E941CCB5247B651100FFF203 /* FYTool */,
 				E941CCB4247B651100FFF203 /* Products */,
 			);
@@ -132,7 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E941CCB7247B651100FFF203 /* AppDelegate.swift in Sources */,
+				E90E4613247CB75F00AA5C3D /* InsetLabel.swift in Sources */,
 				E941CCCB247B66FA00FFF203 /* ViewController.swift in Sources */,
+				E90E4614247CB75F00AA5C3D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
