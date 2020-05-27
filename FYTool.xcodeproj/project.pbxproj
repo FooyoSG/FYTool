@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E90E4613247CB75F00AA5C3D /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E4611247CB75F00AA5C3D /* InsetLabel.swift */; };
-		E90E4614247CB75F00AA5C3D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90E4612247CB75F00AA5C3D /* Extensions.swift */; };
+		CD121CAA4F8089787B9DD40F /* libPods-FYTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2750ACCEF8CB2715C165DECB /* libPods-FYTool.a */; };
 		E941CCB7247B651100FFF203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941CCB6247B651100FFF203 /* AppDelegate.swift */; };
 		E941CCBD247B651200FFF203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E941CCBC247B651200FFF203 /* Assets.xcassets */; };
 		E941CCC3247B651200FFF203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E941CCC1247B651200FFF203 /* LaunchScreen.storyboard */; };
@@ -16,8 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E90E4611247CB75F00AA5C3D /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
-		E90E4612247CB75F00AA5C3D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		191955C52BC599CDFA521F3D /* Pods-FYTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYTool.release.xcconfig"; path = "Target Support Files/Pods-FYTool/Pods-FYTool.release.xcconfig"; sourceTree = "<group>"; };
+		2750ACCEF8CB2715C165DECB /* libPods-FYTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FYTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		878358739D6C67D000652AC5 /* Pods-FYTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYTool.debug.xcconfig"; path = "Target Support Files/Pods-FYTool/Pods-FYTool.debug.xcconfig"; sourceTree = "<group>"; };
 		E941CCB3247B651100FFF203 /* FYTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E941CCB6247B651100FFF203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E941CCBC247B651200FFF203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,27 +31,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD121CAA4F8089787B9DD40F /* libPods-FYTool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E90E4610247CB75F00AA5C3D /* Source */ = {
+		8CA7AEF74CF61516E23D38FD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E90E4611247CB75F00AA5C3D /* InsetLabel.swift */,
-				E90E4612247CB75F00AA5C3D /* Extensions.swift */,
+				878358739D6C67D000652AC5 /* Pods-FYTool.debug.xcconfig */,
+				191955C52BC599CDFA521F3D /* Pods-FYTool.release.xcconfig */,
 			);
-			path = Source;
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CFD9CA13DB6A8CBD2736D86D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2750ACCEF8CB2715C165DECB /* libPods-FYTool.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E941CCAA247B651100FFF203 = {
 			isa = PBXGroup;
 			children = (
-				E90E4610247CB75F00AA5C3D /* Source */,
 				E941CCB5247B651100FFF203 /* FYTool */,
 				E941CCB4247B651100FFF203 /* Products */,
+				8CA7AEF74CF61516E23D38FD /* Pods */,
+				CFD9CA13DB6A8CBD2736D86D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +93,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E941CCC7247B651200FFF203 /* Build configuration list for PBXNativeTarget "FYTool" */;
 			buildPhases = (
+				165946D651C2FE40F1F72267 /* [CP] Check Pods Manifest.lock */,
 				E941CCAF247B651100FFF203 /* Sources */,
 				E941CCB0247B651100FFF203 /* Frameworks */,
 				E941CCB1247B651100FFF203 /* Resources */,
@@ -140,15 +152,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		165946D651C2FE40F1F72267 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FYTool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E941CCAF247B651100FFF203 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E941CCB7247B651100FFF203 /* AppDelegate.swift in Sources */,
-				E90E4613247CB75F00AA5C3D /* InsetLabel.swift in Sources */,
 				E941CCCB247B66FA00FFF203 /* ViewController.swift in Sources */,
-				E90E4614247CB75F00AA5C3D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +317,7 @@
 		};
 		E941CCC8247B651200FFF203 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878358739D6C67D000652AC5 /* Pods-FYTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -303,6 +339,7 @@
 		};
 		E941CCC9247B651200FFF203 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191955C52BC599CDFA521F3D /* Pods-FYTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

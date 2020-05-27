@@ -1,0 +1,16 @@
+PODS:
+  - FYTool (0.1.1)
+
+DEPENDENCIES:
+  - FYTool
+
+SPEC REPOS:
+  trunk:
+    - FYTool
+
+SPEC CHECKSUMS:
+  FYTool: 9e1dc0eebec513ca0e62c4fa5fd4f804273c5705
+
+PODFILE CHECKSUM: c4ec08109407d0b1177f5f3bf7712bda7445aca4
+
+COCOAPODS: 1.9.1

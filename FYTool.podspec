@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'FYTool'
-    s.version          = '0.1.3'
+    s.version          = '0.1.2'
     s.summary          = 'Tool library and constant.'
    
     s.description      = <<-DESC
@@ -15,5 +15,7 @@ Pod::Spec.new do |s|
    
     s.swift_versions = ['5.1', '5.2']
     s.ios.deployment_target = '10.0'
+
+    s.dependency 'SnapKit'
    
   end
