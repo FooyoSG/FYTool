@@ -9,7 +9,7 @@
 import UIKit
 
 extension UISearchBar {
-    var textField: UITextField? {
+    public var textField: UITextField? {
         if #available(iOS 13, *) {
             return searchTextField
         } else {
@@ -23,7 +23,7 @@ extension UIButton {
     /// - Parameters:
     ///   - spacing: 两者的距离
     ///   - imageFirst: imageView 是否在左边, 默认在左边 值为 true
-    func alignHorizontal(spacing: CGFloat, imageFirst: Bool = true) {
+    public func alignHorizontal(spacing: CGFloat, imageFirst: Bool = true) {
         let edgeOffset = spacing / 2
         imageEdgeInsets = UIEdgeInsets(top: 0,
                                        left: -edgeOffset,
@@ -45,7 +45,7 @@ extension UIButton {
     }
     
     /// 抖动
-    func shake() {
+    public func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6
@@ -55,35 +55,35 @@ extension UIButton {
 }
 
 extension String {
-    var isNumber: Bool {
+    public var isNumber: Bool {
         return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
     /// 是否只有空格
-    var isBlank: Bool {
+    public var isBlank: Bool {
         let trimmedStr = self.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedStr.isEmpty
     }
 
-    func toAttr(_ attributes : [NSAttributedString.Key: Any]) -> NSAttributedString {
+    public func toAttr(_ attributes : [NSAttributedString.Key: Any]) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: attributes)
     }
     
     /// 筛选为数字字符串
     /// eg: "ab12c3" ==> "123"
-    var toNumberString: String {
+    public var toNumberString: String {
         return self.filter { $0.isNumber }
     }
     
     /// 转换为自然数
-    var toNumber: Int? {
+    public var toNumber: Int? {
         return Int(toNumberString)
     }
     
 }
 extension Array where Element: Hashable {
     /// 数组去重
-    var unique: [Element] {
+    public var unique: [Element] {
         var uniq = Set<Element>()
         uniq.reserveCapacity(self.count)
         return self.filter {
@@ -94,13 +94,13 @@ extension Array where Element: Hashable {
 
 extension UITextField {
 
-    enum PaddingSide {
+    public enum PaddingSide {
         case left(CGFloat)
         case right(CGFloat)
         case both(CGFloat)
     }
 
-    func addPadding(_ padding: PaddingSide) {
+    public func addPadding(_ padding: PaddingSide) {
 
         self.leftViewMode = .always
         self.layer.masksToBounds = true
@@ -132,7 +132,7 @@ extension UITextField {
 
 extension UITableView {
     
-    func reloadDataWithDisableActions() {
+    public func reloadDataWithDisableActions() {
         CATransaction.begin()
         CATransaction.setDisableActions(false)
         self.reloadData()
@@ -140,38 +140,38 @@ extension UITableView {
 
     }
     
-    func cancelEstimatedHeight(){
+    public func cancelEstimatedHeight(){
         estimatedRowHeight = 0
         estimatedSectionFooterHeight = 0
         estimatedSectionHeaderHeight = 0
     }
     
     // MARK: - HeaderView Or FooterView
-    func registerForHeaderFooter<T: UIView>(_: T.Type, forHeaderFooterViewReuseIdentifier: String = String(describing: T.self)) {
+    public func registerForHeaderFooter<T: UIView>(_: T.Type, forHeaderFooterViewReuseIdentifier: String = String(describing: T.self)) {
         self.register(T.self, forHeaderFooterViewReuseIdentifier: forHeaderFooterViewReuseIdentifier)
     }
     
-    func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(reuseIdentifier: String = String(describing: T.self)) -> T? {
+    public func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(reuseIdentifier: String = String(describing: T.self)) -> T? {
         self.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? T
     }
     
     // MARK: - Cell
-    func register<T: UITableViewCell>(_: T.Type, reuseIdentifier: String = String(describing: T.self)) {
+    public func register<T: UITableViewCell>(_: T.Type, reuseIdentifier: String = String(describing: T.self)) {
         self.register(T.self, forCellReuseIdentifier: reuseIdentifier)
     }
     
-    func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath, reuseIdentifier: String = String(describing: T.self)) -> T {
+    public func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath, reuseIdentifier: String = String(describing: T.self)) -> T {
         return self.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! T
     }
 }
 
 extension UICollectionView {
     
-    func register<T: UICollectionViewCell>(_: T.Type, reuseIdentifier: String = String(describing: T.self)) {
+    public func register<T: UICollectionViewCell>(_: T.Type, reuseIdentifier: String = String(describing: T.self)) {
         register(T.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
-    func dequeueReusableCell<T: UICollectionViewCell>(indexPath: IndexPath, reuseIdentifier: String = String(describing: T.self)) -> T {
+    public func dequeueReusableCell<T: UICollectionViewCell>(indexPath: IndexPath, reuseIdentifier: String = String(describing: T.self)) -> T {
         return dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! T
     }
 }

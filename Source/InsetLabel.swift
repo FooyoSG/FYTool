@@ -8,9 +8,9 @@
 
 import UIKit
 
-class InsetLabel: UILabel {
+public class InsetLabel: UILabel {
     
-    var inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    public var inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
     convenience init(inset: UIEdgeInsets) {
         self.init()
