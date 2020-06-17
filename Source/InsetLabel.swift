@@ -12,7 +12,7 @@ public class InsetLabel: UILabel {
     
     public var inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     
-    convenience init(inset: UIEdgeInsets) {
+    public convenience init(inset: UIEdgeInsets) {
         self.init()
         self.inset = inset
     }
@@ -24,11 +24,11 @@ public class InsetLabel: UILabel {
      }
      
      */
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.drawText(in: rect.inset(by: inset))
     }
     
-    override var intrinsicContentSize: CGSize {
+    public override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
         let s = CGSize(width: size.width + inset.left + inset.right,
                        height: size.height + inset.bottom + inset.top)
