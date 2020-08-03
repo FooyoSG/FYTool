@@ -1,0 +1,7 @@
+use_frameworks!
+platform :ios, '10.3'
+
+target 'FYTool_Example' do
+  pod 'FYTool', :path => '../'
+
+end
