@@ -1,5 +1,5 @@
 PODS:
-  - FYTool (0.1.0):
+  - FYTool (0.2.0):
     - SnapKit
   - SnapKit (5.0.1)
 
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FYTool: 07ddc7da4dfa230a05408f4f1721265403a0fc89
+  FYTool: 0c95bece1c894cdfb776a8faa5a19de9ce636443
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
 PODFILE CHECKSUM: 82b70a6f72d3dae6d150a9527cd809da0dfd1366
