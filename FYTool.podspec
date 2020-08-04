@@ -33,5 +33,5 @@ Some commonly used extension methods, Tool library.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'SnapKit', 'AlamofireImage', 'Alamofire'
+  s.dependency 'SnapKit', 'Alamofire'
 end
