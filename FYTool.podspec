@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FYTool'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'Tool library and constant.'
   
   s.description      = <<-DESC
@@ -33,5 +33,7 @@ Some commonly used extension methods, Tool library.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'SnapKit', 'Alamofire'
+  s.dependency 'SnapKit'
+  s.dependency 'AlamofireImage'
+  s.dependency 'Alamofire'
 end

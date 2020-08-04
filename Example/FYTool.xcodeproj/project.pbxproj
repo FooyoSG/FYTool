@@ -30,7 +30,7 @@
 		80F74C60D9643730E0B02667 /* Pods-FYTool_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYTool_Example.release.xcconfig"; path = "Target Support Files/Pods-FYTool_Example/Pods-FYTool_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A8F4FCDFCAEA2C5943E6C0C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AA881D5E4EB541CA45D81C3E /* Pods-FYTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYTool_Tests.release.xcconfig"; path = "Target Support Files/Pods-FYTool_Tests/Pods-FYTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C04DBEAB7C983FE0482CFDB7 /* FYTool.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FYTool.podspec; path = ../FYTool.podspec; sourceTree = "<group>"; };
+		C04DBEAB7C983FE0482CFDB7 /* FYTool.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FYTool.podspec; path = ../FYTool.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D2F7A58E9DA43D1FF46ACBF3 /* Pods-FYTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYTool_Example.debug.xcconfig"; path = "Target Support Files/Pods-FYTool_Example/Pods-FYTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,11 +195,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FYTool_Example/Pods-FYTool_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FYTool/FYTool.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FYTool.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
