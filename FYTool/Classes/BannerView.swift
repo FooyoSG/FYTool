@@ -8,32 +8,43 @@
 
 import UIKit
 
-struct Banner {
-    var title: String?
-    var imageNetwork: ImageNetwork?
-    var image: UIImage?
+public struct Banner {
+    public var title: String?
+    public var imageNetwork: ImageNetwork?
+    public var image: UIImage?
     
-    struct ImageNetwork {
-        var url: String?
-        var placeholder: UIImage?
+    public struct ImageNetwork {
+        public var url: String?
+        public var placeholder: UIImage?
+        
+        public init(url: String? = nil, placeholder: UIImage?) {
+            self.url = url
+            self.placeholder = placeholder
+        }
+    }
+    
+    public init(title: String? = nil, imageNetwork: ImageNetwork? = nil, image: UIImage? = nil) {
+        self.title = title
+        self.imageNetwork = imageNetwork
+        self.image = image
     }
 }
 
-struct BannerItemStyle {
-    var titleAlignment: NSTextAlignment = .center
-    var titleColor: UIColor = .black
-    var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
-    var imageViewContentMode: UIView.ContentMode = .scaleAspectFill
-    var backgroundColor: UIColor = .lightGray
+public struct BannerItemStyle {
+    public var titleAlignment: NSTextAlignment = .center
+    public var titleColor: UIColor = .black
+    public var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
+    public var imageViewContentMode: UIView.ContentMode = .scaleAspectFill
+    public var backgroundColor: UIColor = .lightGray
 }
 
-protocol BannerViewDelegate: class {
+public protocol BannerViewDelegate: class {
     func bannerView(_ bannerView: BannerView, didSelectItemAt index: Int)
 }
 
 
 /// BannerView, support set to UIView array, or default Banner class array.
-class BannerView: UIView {
+public class BannerView: UIView {
     
     public weak var delegate: BannerViewDelegate?
     public var didSelectItem: ((_ bannerView: BannerView, _ index: Int) -> Void)?
@@ -55,6 +66,7 @@ class BannerView: UIView {
     private var timer: Timer?
     private var data: [Any] = []
     private var layout = BannerFlowLayout()
+    private var pagerC = UIPageControl()
     
     
     
@@ -63,8 +75,11 @@ class BannerView: UIView {
         v.register(BannerCollectionViewCell.self)
         v.bounces = false
         v.isPagingEnabled = false
+        v.decelerationRate = .fast
         v.dataSource = self
         v.delegate = self
+        v.showsVerticalScrollIndicator = false
+        v.showsHorizontalScrollIndicator = false
         return v
     }()
     
@@ -91,7 +106,6 @@ class BannerView: UIView {
         
         collectionView.contentInset = edgeInsets
         collectionView.setCollectionViewLayout(layout, animated: true)
-        collectionView.decelerationRate = .fast
     }
     
     public func setData(data: [Banner]) {
@@ -103,36 +117,50 @@ class BannerView: UIView {
     }
     
     private func setData(any: [Any]) {
-        guard data.count >= 1 else { return }
-        self.data = [data.last!] + data + [data.first!]
+        guard any.count >= 1 else { return }
+        self.data = [any.last!] + any + [any.first!]
         collectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
+        DispatchQueue.main.async {
+            self.collectionView.contentOffset = CGPoint(x: self.collectionView.frame.width - self.edgeInsets.left, y: -self.edgeInsets.top)
+        }
 
         guard isAutoRotation else {
             timer?.invalidate()
             timer = nil
             return
         }
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] (timer) in
-            guard let weakSelf = self else { return }
-            let width = weakSelf.collectionView.frame.width
-            let edgeInsets = weakSelf.edgeInsets
-            if weakSelf.currentIndex == weakSelf.data.count - 1 {
-                weakSelf.collectionView.contentOffset = CGPoint(x: width - edgeInsets.left, y: -edgeInsets.top)
-            }
-            let currentOffset = weakSelf.collectionView.contentOffset
-            let nesxtOffset = CGPoint(x: currentOffset.x + width, y: -edgeInsets.top)
-            weakSelf.collectionView.setContentOffset(nesxtOffset, animated: true)
-        })
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(autoScrollAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc
+    private func autoScrollAction() {
+        if currentIndex == data.count - 1 {
+            scrollToFirstDataOnMain()
+        }
+        let currentOffset = collectionView.contentOffset
+        let nesxtOffset = CGPoint(x: currentOffset.x + collectionView.frame.width, y: -edgeInsets.top)
+        collectionView.setContentOffset(nesxtOffset, animated: true)
+    }
+    private func scrollToFirstDataOnMain() {
+        DispatchQueue.main.async {
+            let offset = CGPoint(x: self.collectionView.frame.width - self.edgeInsets.left, y: -self.edgeInsets.top)
+            self.collectionView.contentOffset = offset
+        }
+    }
+    private func scrollToLastDataOnMain() {
+        DispatchQueue.main.async {
+            let offset = CGPoint(x: (self.collectionView.frame.width * CGFloat(self.data.count - 2)) - self.edgeInsets.left, y: -self.edgeInsets.top)
+            self.collectionView.contentOffset = offset
+        }
     }
 }
 
 extension BannerView: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: BannerCollectionViewCell! = collectionView.dequeueReusableCell(indexPath: indexPath)
         if let banner = data[indexPath.item] as? Banner {
             cell.setCell(data: banner)
@@ -144,43 +172,36 @@ extension BannerView: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         currentIndex = indexPath.item
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         timer?.invalidate()
         timer = nil
+        if currentIndex == data.count - 1 {
+            scrollToFirstDataOnMain()
+        }
     }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard isAutoRotation else {
             timer?.invalidate()
             timer = nil
             return
         }
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] (timer) in
-            guard let weakSelf = self else { return }
-            let width = weakSelf.collectionView.frame.width
-            let edgeInsets = weakSelf.edgeInsets
-            if weakSelf.currentIndex == weakSelf.data.count - 1 {
-                weakSelf.collectionView.contentOffset = CGPoint(x: width - edgeInsets.left, y: -edgeInsets.top)
-            }
-            let currentOffset = weakSelf.collectionView.contentOffset
-            let nesxtOffset = CGPoint(x: currentOffset.x + width, y: -edgeInsets.top)
-            weakSelf.collectionView.setContentOffset(nesxtOffset, animated: true)
-        })
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(autoScrollAction), userInfo: nil, repeats: true)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if currentIndex == data.count - 1 {
-            scrollView.contentOffset = CGPoint(x: scrollView.frame.width - edgeInsets.left, y: -edgeInsets.top)
+            scrollToFirstDataOnMain()
         }
         if currentIndex == 0 {
-            scrollView.contentOffset = CGPoint(x: (scrollView.frame.width * CGFloat(data.count - 2)) - edgeInsets.left, y: -edgeInsets.top)
+            scrollToLastDataOnMain()
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.bannerView(self, didSelectItemAt: indexPath.item)
         if let b = didSelectItem {
             b(self, indexPath.item)

@@ -11,7 +11,7 @@ import Alamofire
 
 extension UIImageView  {
     
-    func setImage(url: URLConvertible?, placeholder: UIImage?, size: CGSize? = nil) {
+    public func setImage(url: URLConvertible?, placeholder: UIImage?, size: CGSize? = nil) {
         
         guard let url = try? url?.asURL() else {
             image = placeholder

@@ -18,6 +18,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let arr: [UIView] = [UIColor.red, UIColor.blue, UIColor.yellow].enumerated().map {
+            let v = UIView()
+            v.backgroundColor = $0.element
+            v.tag = $0.offset
+            return v
+        }
+        
+        view.addSubview(banner)
+        banner.snp.makeConstraints {
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(250)
+        }
+        banner.setData(data: arr)
     }
 }
 
