@@ -31,6 +31,8 @@ class ViewController: UIViewController {
             $0.height.equalTo(250)
         }
         banner.setData(data: arr)
+        
+        showToast(text: "Hello!")
     }
 }
 
