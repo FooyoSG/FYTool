@@ -64,6 +64,7 @@ public class BannerView: UIView {
     
     private var currentIndex: Int = 1
     private var timer: Timer?
+    /// 传入的数据的基础上 ，首部加入了最后一个数据， 尾部加入了第一个数据。该数据总长度为 原数据 + 2
     private var data: [Any] = []
     private var layout = BannerFlowLayout()
     private var pagerC = UIPageControl()
@@ -137,9 +138,10 @@ public class BannerView: UIView {
         if currentIndex == data.count - 1 {
             scrollToFirstDataOnMain()
         }
-        let currentOffset = collectionView.contentOffset
-        let nesxtOffset = CGPoint(x: currentOffset.x + collectionView.frame.width, y: -edgeInsets.top)
-        collectionView.setContentOffset(nesxtOffset, animated: true)
+        DispatchQueue.main.async {
+            let nesxtOffset = CGPoint(x: CGFloat(self.currentIndex + 1) * self.collectionView.frame.width, y: -self.edgeInsets.top)
+            self.collectionView.setContentOffset(nesxtOffset, animated: true)
+        }
     }
     private func scrollToFirstDataOnMain() {
         DispatchQueue.main.async {
@@ -151,6 +153,15 @@ public class BannerView: UIView {
         DispatchQueue.main.async {
             let offset = CGPoint(x: (self.collectionView.frame.width * CGFloat(self.data.count - 2)) - self.edgeInsets.left, y: -self.edgeInsets.top)
             self.collectionView.contentOffset = offset
+        }
+    }
+    
+    private func checkPage() {
+        if currentIndex == data.count - 1 {
+            scrollToFirstDataOnMain()
+        }
+        if currentIndex == 0 {
+            scrollToLastDataOnMain()
         }
     }
 }
@@ -193,18 +204,24 @@ extension BannerView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if currentIndex == data.count - 1 {
-            scrollToFirstDataOnMain()
-        }
-        if currentIndex == 0 {
-            scrollToLastDataOnMain()
-        }
+        checkPage()
+    }
+    
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        checkPage()
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.bannerView(self, didSelectItemAt: indexPath.item)
+        var index = indexPath.item - 1
+        if currentIndex == data.count - 1 {
+            index = 0
+        }
+        if currentIndex == 0 {
+            index = data.count - 3
+        }
+        delegate?.bannerView(self, didSelectItemAt: index)
         if let b = didSelectItem {
-            b(self, indexPath.item)
+            b(self, index)
         }
     }
 }
