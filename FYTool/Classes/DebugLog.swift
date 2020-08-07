@@ -9,6 +9,6 @@
 /// 只在 debug 版本才会打印
 public func FYDebugLog(_ items: Any..., file: String = #file, line: Int = #line) {
     #if DEBUG
-    Swift.print("✅[\(URL(fileURLWithPath: file).lastPathComponent) - line:\(line)]: ⬇️\n", "\(items)", "\n⬆️")
+    Swift.print("✅[\(URL(fileURLWithPath: file).lastPathComponent) - line:\(line)]: ⬇️\n", "\(items)")
     #endif
 }

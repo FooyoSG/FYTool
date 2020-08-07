@@ -13,12 +13,15 @@ class ViewController: UIViewController {
     
     private lazy var banner: BannerView = {
         let b = BannerView()
+        b.scrollDirection = .vertical
+        b.backgroundColor = .gray
+        b.edgeInsets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         return b
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let arr: [UIView] = [UIColor.red, UIColor.blue, UIColor.yellow].enumerated().map {
+        let arr: [UIView] = [UIColor.red, UIColor.blue, UIColor.green].enumerated().map {
             let v = UIView()
             v.backgroundColor = $0.element
             v.tag = $0.offset
@@ -27,7 +30,8 @@ class ViewController: UIViewController {
         
         view.addSubview(banner)
         banner.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
+            $0.top.equalToSuperview().inset(100)
+            $0.left.right.equalToSuperview()
             $0.height.equalTo(250)
         }
         banner.setData(data: arr)
