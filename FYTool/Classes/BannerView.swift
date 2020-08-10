@@ -53,7 +53,7 @@ public class BannerView: UIView {
     public var edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
     /// Constants indicating the direction of scrolling for the layout.
-    private var scrollDirection: UICollectionView.ScrollDirection {
+    public var scrollDirection: UICollectionView.ScrollDirection {
         set { layout.scrollDirection = newValue }
         get { layout.scrollDirection }
     }
@@ -85,12 +85,10 @@ public class BannerView: UIView {
     private var data: [Any] = []
     private var layout = BannerFlowLayout()
     
-    
-    
     private lazy var collectionView: UICollectionView = {
         let v = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         v.register(BannerCollectionViewCell.self)
-        v.bounces = true
+        v.bounces = false
         v.isPagingEnabled = false
         v.decelerationRate = .fast
         v.dataSource = self
@@ -116,9 +114,14 @@ public class BannerView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        guard layout.itemSize != frame.size else { return }
-        layout.itemSize = frame.inset(by: edgeInsets).size
-        layout.minimumLineSpacing = edgeInsets.left + edgeInsets.right
+        guard layout.itemSize != bounds.inset(by: edgeInsets).size else { return }
+        layout.itemSize = bounds.inset(by: edgeInsets).size
+        
+        if scrollDirection == .horizontal {
+            layout.minimumLineSpacing = edgeInsets.left + edgeInsets.right
+        } else {
+            layout.minimumLineSpacing = edgeInsets.top + edgeInsets.bottom
+        }
         
         collectionView.frame = self.bounds
         collectionView.contentInset = edgeInsets
@@ -141,7 +144,7 @@ public class BannerView: UIView {
             if self.scrollDirection == .horizontal {
                 self.collectionView.contentOffset = CGPoint(x: self.bounds.width - self.edgeInsets.left, y: -self.edgeInsets.top)
             } else {
-                self.collectionView.contentOffset = CGPoint(x: -self.edgeInsets.left, y: self.bounds.height - self.edgeInsets.top - self.edgeInsets.bottom)
+                self.collectionView.contentOffset = CGPoint(x: -self.edgeInsets.left, y: self.bounds.height - self.edgeInsets.top)
             }
         }
 

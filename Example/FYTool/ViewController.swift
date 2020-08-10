@@ -15,16 +15,14 @@ class ViewController: UIViewController {
         let b = BannerView()
         b.scrollDirection = .vertical
         b.backgroundColor = .gray
-        b.edgeInsets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+        b.edgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
         return b
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let arr: [UIView] = [UIColor.red, UIColor.blue, UIColor.green].enumerated().map {
-            let v = UIView()
-            v.backgroundColor = $0.element
-            v.tag = $0.offset
+        let arr: [Banner] = ["A", "B", "C"].enumerated().map {
+            let v = Banner(title: $0.element, imageNetwork: nil, image: #imageLiteral(resourceName: "31"))
             return v
         }
         
