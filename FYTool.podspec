@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FYTool'
-  s.version          = '0.2.7'
+  s.version          = '0.2.8'
   s.summary          = 'Tool library and constant.'
   
   s.description      = <<-DESC

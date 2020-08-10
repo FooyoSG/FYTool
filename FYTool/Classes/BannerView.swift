@@ -42,6 +42,10 @@ public protocol BannerViewDelegate: class {
     func bannerView(_ bannerView: BannerView, didSelectItemAt index: Int)
     func bannerViewDidEndScroll(_ bannerView: BannerView, current index: Int)
 }
+extension BannerViewDelegate {
+    func bannerView(_ bannerView: BannerView, didSelectItemAt index: Int) {}
+    func bannerViewDidEndScroll(_ bannerView: BannerView, current index: Int) {}
+}
 
 
 /// BannerView, support set to UIView array, or default Banner class array.
