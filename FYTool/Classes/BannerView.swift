@@ -43,8 +43,8 @@ public protocol BannerViewDelegate: class {
     func bannerViewDidEndScroll(_ bannerView: BannerView, current index: Int)
 }
 extension BannerViewDelegate {
-    func bannerView(_ bannerView: BannerView, didSelectItemAt index: Int) {}
-    func bannerViewDidEndScroll(_ bannerView: BannerView, current index: Int) {}
+    public func bannerView(_ bannerView: BannerView, didSelectItemAt index: Int) {}
+    public func bannerViewDidEndScroll(_ bannerView: BannerView, current index: Int) {}
 }
 
 
