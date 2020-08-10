@@ -9,31 +9,18 @@
 import UIKit
 
 public struct Banner {
-    public var title: String?
-    public var imageNetwork: ImageNetwork?
+    public var url: String?
+    public var placeholder: UIImage?
     public var image: UIImage?
     
-    public struct ImageNetwork {
-        public var url: String?
-        public var placeholder: UIImage?
-        
-        public init(url: String? = nil, placeholder: UIImage?) {
-            self.url = url
-            self.placeholder = placeholder
-        }
-    }
-    
-    public init(title: String? = nil, imageNetwork: ImageNetwork? = nil, image: UIImage? = nil) {
-        self.title = title
-        self.imageNetwork = imageNetwork
+    public init(url: String? = nil, placeholder: UIImage? = nil, image: UIImage? = nil) {
+        self.url = url
+        self.placeholder = placeholder
         self.image = image
     }
 }
 
 public struct BannerItemStyle {
-    public var titleAlignment: NSTextAlignment = .center
-    public var titleColor: UIColor = .black
-    public var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
     public var imageViewContentMode: UIView.ContentMode = .scaleAspectFill
     public var backgroundColor: UIColor = .lightGray
 }
@@ -265,6 +252,7 @@ extension BannerView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard bounds.width > 0 else { return }
         if scrollDirection == .horizontal {
             currentIndex = Int((scrollView.contentOffset.x + edgeInsets.left) / bounds.width)
         } else {
@@ -345,23 +333,14 @@ class BannerCollectionViewCell: UICollectionViewCell {
         return i
     }()
     
-    public final let title: UILabel = {
-        let l = UILabel()
-        l.textColor = .black
-        l.textAlignment = .center
-        l.font = UIFont.systemFont(ofSize: 14)
-        return l
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         contentView.addSubview(imageView)
-        contentView.addSubview(title)
-        imageView.snp.makeConstraints { $0.edges.equalToSuperview() }
-        title.snp.makeConstraints {
-            $0.left.right.bottom.equalToSuperview()
-        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.frame = contentView.bounds
     }
     
     required init?(coder: NSCoder) {
@@ -369,14 +348,11 @@ class BannerCollectionViewCell: UICollectionViewCell {
     }
     
     func setCell(data: Banner) {
-        if let imageNetwork = data.imageNetwork, let url = imageNetwork.url {
-            imageView.setImage(url: url, placeholder: imageNetwork.placeholder)
+        if let url = data.url {
+            imageView.setImage(url: url, placeholder: data.placeholder)
         } else {
             imageView.image = data.image
         }
-        
-        title.text = data.title
-        title.isHidden = data.title == nil
     }
     
     func setCell(data: UIView) {
@@ -392,9 +368,5 @@ class BannerCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = preference.backgroundColor
         
         imageView.contentMode = preference.imageViewContentMode
-        
-        title.textColor = preference.titleColor
-        title.textAlignment = preference.titleAlignment
-        title.font = preference.titleFont
     }
 }
