@@ -35,4 +35,3 @@ pod install --repo-update
 ## Custom View
 
 - InsetLabel
-- BannerView
