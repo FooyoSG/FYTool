@@ -11,6 +11,10 @@ import SnapKit
 
 extension UIView {
     
+    public func showToast(text: String?, withDuration: TimeInterval = 1.5, delay: TimeInterval = 1.5) {
+        privateShowToast(text: text, withDuration: withDuration, delay: delay)
+    }
+    
      public enum LineType {
         case top
         case bottom

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public func showToast(text: String?, withDuration: TimeInterval = 1.5, delay: TimeInterval = 1.5) {
+func privateShowToast(text: String?, withDuration: TimeInterval = 1.5, delay: TimeInterval = 1.5) {
     guard let text = text, text != "" else { return }
     guard let windows = UIApplication.shared.windows.last else { return }
     

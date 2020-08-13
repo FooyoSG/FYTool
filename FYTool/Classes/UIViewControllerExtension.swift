@@ -22,4 +22,8 @@ extension UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    public func showToast(text: String?, withDuration: TimeInterval = 1.5, delay: TimeInterval = 1.5) {
+        privateShowToast(text: text, withDuration: withDuration, delay: delay)
+    }
 }
