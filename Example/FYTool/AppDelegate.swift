@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FYTool
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showToast(text: "Hello!")
+        UserDefaults.removeAllDefaultsData()
     }
 }
 
@@ -23,13 +24,13 @@ extension UserDefaults {
             case domain
         }
     }
-    
+
     struct userInfo: UserDefaultsSettable {
         enum defaultKeys: String {
             case current
         }
     }
-    
+
     struct signCache: UserDefaultsSettable {
         enum defaultKeys: String {
             case account

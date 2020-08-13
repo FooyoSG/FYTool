@@ -2,7 +2,7 @@ PODS:
   - Alamofire (5.2.2)
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
-  - FYTool (0.2.12):
+  - FYTool (0.3.1):
     - Alamofire
     - AlamofireImage
     - SnapKit
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
-  FYTool: 4a21c12c1eb1869d5c5bc27b8dab4b4cfb1e9463
+  FYTool: 15447bc60be913d7de79b4932cd964a72c5b0b57
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
 PODFILE CHECKSUM: 82b70a6f72d3dae6d150a9527cd809da0dfd1366

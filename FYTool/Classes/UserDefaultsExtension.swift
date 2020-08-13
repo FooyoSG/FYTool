@@ -59,7 +59,7 @@ extension UserDefaultsSettable where defaultKeys.RawValue == String {
     }
 }
 extension UserDefaults {
-    static func removeAllDefaultsData(){
+    public static func removeAllDefaultsData(){
        let userDefaults = UserDefaults.standard
        let dics = userDefaults.dictionaryRepresentation()
        for key in dics {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FYTool'
-  s.version          = '0.2.12'
+  s.version          = '0.3.1'
   s.summary          = 'Tool library and constant.'
   
   s.description      = <<-DESC
@@ -25,7 +25,7 @@ Some commonly used extension methods, Tool library.
 
   s.source           = { :git => 'https://github.com/FooyoSG/FYTool.git', :tag => s.version.to_s }
   s.source_files = 'FYTool/Classes/*.swift'
-  
+  s.requires_arc = true
   # s.resource_bundles = {
   #   'FYTool' => ['FYTool/Assets/*.png']
   # }
