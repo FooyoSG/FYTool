@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FYTool'
-  s.version          = '0.3.1'
+  s.version          = '0.4.0'
   s.summary          = 'Tool library and constant.'
   
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ Some commonly used extension methods, Tool library.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'chinghoi' => '56465334@qq.com' }
   
-  s.swift_versions = ['5']
+  s.swift_versions = ['5.3']
 
   s.ios.deployment_target = '10.3'
 

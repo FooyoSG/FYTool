@@ -33,16 +33,4 @@ extension String {
      public var toNumber: Int? {
         return Int(toNumberString)
     }
-    
-    /// To date
-    /// - Parameters:
-    ///   - dateFormat: eg: "H:mm:ss"
-    ///   - timeZone: default is current, the time zone currently used by the system.
-    /// - Returns: Date?
-     public func toDate(dateFormat: String, timeZone: TimeZone = .current) -> Date? {
-        let formatter = DateFormatter()
-        formatter.timeZone = timeZone
-        formatter.dateFormat = dateFormat
-        return formatter.date(from: self)
-    }
 }
